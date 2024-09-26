@@ -1,0 +1,38 @@
+html,
+body {
+  background-color: #2c6f6f82;
+  font-family: "Courier New", Courier, monospace;
+}
+h1 {
+  color: aqua;
+  font-family: "Montserrat Alternates", sans-serif;
+  font-weight: 200;
+  font-style: normal;
+  font-size: 4rem;
+}
+.main {
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container {
+  padding: 2rem;
+}
+a {
+  color: #00ffff;
+  text-decoration: none;
+  background-color: #629e9e82;
+  display: block;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+  border: 1px solid #00ffff;
+  border-radius: 35px;
+}
+.boton {
+  margin-block: 2rem;
+}
+a:hover {
+  transform: scale(1.1);
+}
