@@ -21,7 +21,7 @@ function draw() {
   let y = mouseY + random(-20, 20); // Posición aleatoria alrededor del cursor
   let color = random(colors);
 
-  // Crea un nuevo cuadrado con opacidad en los bordes y agrega al array
+  // Crear un nuevo cuadrado con opacidad en los bordes y agregarlo al array
   squares.push({
     x: x,
     y: y,
@@ -39,7 +39,7 @@ function draw() {
     fill(square.color[0], square.color[1], square.color[2], square.opacity);
     noStroke();
 
-    // Bordes con opacidad
+    // Bordes redondeados con opacidad (usando stroke)
     stroke(
       square.color[0],
       square.color[1],
@@ -47,7 +47,10 @@ function draw() {
       square.opacity / 2
     ); // Borde con menos opacidad
     strokeWeight(3); // Grosor del borde
-    rect(square.x, square.y, square.size, square.size);
+
+    // Dibuja el cuadrado con bordes redondeados
+    let borderRadius = 10; // Radio de los bordes redondeados
+    rect(square.x, square.y, square.size, square.size, borderRadius);
 
     // Mueve el cuadrado hacia arriba
     square.y -= square.speed;
@@ -55,7 +58,7 @@ function draw() {
     // Disminuye la opacidad gradualmente
     square.opacity -= 5;
 
-    // Elimina los cuadrados que están fuera de la pantalla o con opacidad 0
+    // Elimina cuadrados que están fuera de la pantalla o con opacidad 0
     if (square.y + square.size < 0 || square.opacity <= 0) {
       squares.splice(i, 1);
     }
