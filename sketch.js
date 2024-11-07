@@ -9,43 +9,54 @@ let colors = [
 function setup() {
   let miCanvas = createCanvas(windowWidth, windowHeight);
   miCanvas.parent("#my-p5-sketch");
-  frameRate(30); // Ajuste de  la velocidad de aparición
+  frameRate(30); // Ajuste de la velocidad de aparición
 }
 
 function draw() {
   background(0); // Fondo negro sin transparencia
 
-  // Agrega nuevos cuadrados cerca de la posición del cursor
-  for (let i = 0; i < 5; i++) {
-    let size = random(10, 30);
-    let x = mouseX + random(-20, 20);
-    let y = mouseY + random(-20, 20);
+  // Genera un cuadrado a la vez en la posición del cursor
+  let size = random(20, 50); // Tamaño más pequeño (de 20 a 50)
+  let x = mouseX + random(-20, 20); // Posición aleatoria alrededor del cursor
+  let y = mouseY + random(-20, 20); // Posición aleatoria alrededor del cursor
+  let color = random(colors);
 
-    // Elige un color aleatorio del array de colores
-    let color = random(colors);
-
-    // Crear un nuevo cuadrado y agrega al array
-    squares.push({
-      x: x,
-      y: y,
-      size: size,
-      color: color,
-      speed: random(1, 3), // Velocidad hacia arriba
-    });
-  }
+  // Crea un nuevo cuadrado con opacidad en los bordes y agrega al array
+  squares.push({
+    x: x,
+    y: y,
+    size: size,
+    color: color,
+    speed: random(1, 3), // Velocidad hacia arriba
+    opacity: 255, // Opacidad inicial
+  });
 
   // Dibuja y actualiza los cuadrados
   for (let i = squares.length - 1; i >= 0; i--) {
     let square = squares[i];
-    fill(square.color[0], square.color[1], square.color[2]);
+
+    // Relleno del cuadrado con opacidad
+    fill(square.color[0], square.color[1], square.color[2], square.opacity);
     noStroke();
+
+    // Bordes con opacidad
+    stroke(
+      square.color[0],
+      square.color[1],
+      square.color[2],
+      square.opacity / 2
+    ); // Borde con menos opacidad
+    strokeWeight(3); // Grosor del borde
     rect(square.x, square.y, square.size, square.size);
 
-    // Mueve  el cuadrado hacia arriba
+    // Mueve el cuadrado hacia arriba
     square.y -= square.speed;
 
-    // Elimina cuadrados que están fuera de la pantalla
-    if (square.y + square.size < 0) {
+    // Disminuye la opacidad gradualmente
+    square.opacity -= 5;
+
+    // Elimina los cuadrados que están fuera de la pantalla o con opacidad 0
+    if (square.y + square.size < 0 || square.opacity <= 0) {
       squares.splice(i, 1);
     }
   }
