@@ -15,6 +15,10 @@
     <script src="https://cdn.jsdelivr.net/npm/p5@1.11.0/lib/p5.min.js"></script>
   </head>
   <body>
+    <div id="preloader">
+  <div class="spinner"></div>
+</div>
+     <div id="animated-name">CHOM</div>
      <div id="my-p5-sketch"></div>
     <main class="main">
       <div class="container">
@@ -58,6 +62,19 @@
         </div>
       </div>
     </main>
+     <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const animatedName = document.getElementById("animated-name");
+    const mainContent = document.querySelector(".main");
+
+    // Detecta el fin de la animación
+    animatedName.addEventListener("animationend", () => {
+      animatedName.style.display = "none"; // Oculta el nombre animado
+      mainContent.style.display = "block"; // Muestra el contenido principal
+    });
+  });
+</script>
+
   </body>
     <script src="sketch.js"></script>
 </html>
