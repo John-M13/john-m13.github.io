@@ -91,7 +91,9 @@ html,
 body {
   background-color: #000000; 
   font-family: "Courier New", Courier, monospace;
+  
 }
+
 
 #my-p5-sketch {
   position: absolute;
@@ -191,3 +193,4 @@ a:hover {
 .main {
   display: none; /* Ocultar contenido inicialmente */
 }
+
